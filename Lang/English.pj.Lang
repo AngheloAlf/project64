@@ -308,6 +308,8 @@
 // RDRAM size
 #580#  "4 MB"
 #581#  "8 MB"
+#582#  "12 MB"
+#583#  "16 MB"
 
 // Advanced block linking
 #600#  "On"

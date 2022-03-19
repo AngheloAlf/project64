@@ -298,6 +298,8 @@ void CLanguage::LoadDefaultStrings(void)
     // RDRAM size
     DEF_STR(RDRAM_4MB, "4 MB");
     DEF_STR(RDRAM_8MB, "8 MB");
+    DEF_STR(RDRAM_12MB, "12 MB");
+    DEF_STR(RDRAM_16MB, "16 MB");
 
     // Advanced block linking
     DEF_STR(ABL_ON, "On");

@@ -339,6 +339,8 @@ public enum LanguageStringID
     //RDRAM Size
     RDRAM_4MB(580),
     RDRAM_8MB(581),
+    RDRAM_12MB(582),
+    RDRAM_16MB(583),
 
     //Advanced Block Linking
     ABL_ON(600),
