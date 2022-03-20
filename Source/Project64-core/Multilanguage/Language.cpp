@@ -296,8 +296,8 @@ void CLanguage::LoadDefaultStrings(void)
     DEF_STR(FLM_CHANGEMEM, "Change memory");
 
     // RDRAM size
-    DEF_STR(RDRAM_4MB, "4 MB");
-    DEF_STR(RDRAM_8MB, "8 MB");
+    DEF_STR(RDRAM_4MB, "4 MB (Jumper Pak)");
+    DEF_STR(RDRAM_8MB, "8 MB (Expansion Pak)");
     DEF_STR(RDRAM_12MB, "12 MB");
     DEF_STR(RDRAM_16MB, "16 MB");
 

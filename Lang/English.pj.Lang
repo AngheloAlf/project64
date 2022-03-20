@@ -306,8 +306,8 @@
 #572#  "Change memory"
 
 // RDRAM size
-#580#  "4 MB"
-#581#  "8 MB"
+#580#  "4 MB (Jumper Pak)"
+#581#  "8 MB (Expansion Pak)"
 #582#  "12 MB"
 #583#  "16 MB"
 
