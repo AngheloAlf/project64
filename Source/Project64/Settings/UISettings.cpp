@@ -26,7 +26,7 @@ void RegisterUISettings (void)
     AddUISetting(Setting_PluginPageFirst, new CSettingTypeApplication("Settings", "Plugin Page First", false));
     AddUISetting(Setting_DisableScrSaver, new CSettingTypeApplication("Settings", "Disable Screen Saver", (uint32_t)true));
     AddUISetting(Setting_EnableDiscordRPC, new CSettingTypeApplication("Settings", "Enable Discord RPC", true));
-    AddUISetting(Setting_AutoSleep, new CSettingTypeApplication("Settings", "Auto Sleep", (uint32_t)true));
+    AddUISetting(Setting_AutoSleep, new CSettingTypeApplication("Settings", "Auto Sleep", (uint32_t)false));
     AddUISetting(Setting_AutoFullscreen, new CSettingTypeApplication("Settings", "Auto Full Screen", (uint32_t)false));
 
     // RDB settings
@@ -55,11 +55,11 @@ void RegisterUISettings (void)
     AddUISetting(RomBrowser_SortAscendingIndex, new CSettingTypeApplicationIndex("Rom Browser", "Sort Ascending", Default_None));
     AddUISetting(RomBrowser_Maximized, new CSettingTypeApplication("Rom Browser", "Maximized", false));
 
-    AddUISetting(Directory_RecentGameDirCount, new CSettingTypeApplication("Settings", "Remembered Rom Dirs", (uint32_t)10));
+    AddUISetting(Directory_RecentGameDirCount, new CSettingTypeApplication("Settings", "Remembered Rom Dirs", (uint32_t)20));
     AddUISetting(Directory_RecentGameDirIndex, new CSettingTypeApplicationIndex("Recent Dir", "Recent Dir", Default_None));
 
     AddUISetting(Directory_LastSave, new CSettingTypeApplication("Directory", "Last Save Directory", Directory_InstantSave));
-    AddUISetting(File_RecentGameFileCount, new CSettingTypeApplication("Settings", "Remembered Rom Files", (uint32_t)10));
+    AddUISetting(File_RecentGameFileCount, new CSettingTypeApplication("Settings", "Remembered Rom Files", (uint32_t)20));
     AddUISetting(File_RecentGameFileIndex, new CSettingTypeApplicationIndex("Recent File", "Recent Rom", Default_None));
 
     // Debugger UI

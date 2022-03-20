@@ -108,9 +108,9 @@ void CSettings::AddHowToHandleSetting(const char * BaseDirectory)
     AddHandler(Setting_AutoStart, new CSettingTypeApplication("Settings", "Auto Start", (uint32_t)true));
     AddHandler(Setting_AutoZipInstantSave, new CSettingTypeApplication("Settings", "Auto Zip Saves", (uint32_t)true));
     AddHandler(Setting_EraseGameDefaults, new CSettingTypeApplication("Settings", "Erase on default", (uint32_t)true));
-    AddHandler(Setting_CheckEmuRunning, new CSettingTypeApplication("Settings", "Check Running", (uint32_t)true));
+    AddHandler(Setting_CheckEmuRunning, new CSettingTypeApplication("Settings", "Check Running", (uint32_t)false));
 #ifndef _M_X64
-    AddHandler(Setting_ForceInterpreterCPU, new CSettingTypeApplication("Settings", "Force Interpreter CPU", false));
+    AddHandler(Setting_ForceInterpreterCPU, new CSettingTypeApplication("Settings", "Force Interpreter CPU", true));
 #else
     AddHandler(Setting_ForceInterpreterCPU, new CSettingTypeApplication("Settings", "Force Interpreter CPU", true));
 #endif
@@ -118,7 +118,7 @@ void CSettings::AddHowToHandleSetting(const char * BaseDirectory)
     AddHandler(Setting_Enhancement, new CSettingTypeApplication("Settings", "Enable Enhancement", (uint32_t)true));
     
 	AddHandler(Setting_RememberCheats, new CSettingTypeApplication("Settings", "Remember Cheats", (bool)false));
-    AddHandler(Setting_UniqueSaveDir, new CSettingTypeApplication("Settings", "Unique Game Dir", true));
+    AddHandler(Setting_UniqueSaveDir, new CSettingTypeApplication("Settings", "Unique Game Dir", false));
     AddHandler(Setting_CurrentLanguage, new CSettingTypeApplication("Settings", "Current Language", ""));
     AddHandler(Setting_EnableDisk, new CSettingTypeTempBool(false));
     AddHandler(Setting_LanguageDirDefault, new CSettingTypeRelativePath("Lang", ""));
@@ -127,7 +127,7 @@ void CSettings::AddHowToHandleSetting(const char * BaseDirectory)
     AddHandler(Setting_DiskSaveType, new CSettingTypeApplication("Settings", "Disk Save Type", (uint32_t)1));
     AddHandler(Setting_UpdateControllerOnRefresh, new CSettingTypeTempBool(false));
 
-	AddHandler(Default_RDRamSize, new CSettingTypeApplication("Defaults", "RDRAM Size", 0x800000u));
+	AddHandler(Default_RDRamSize, new CSettingTypeApplication("Defaults", "RDRAM Size", 0x400000u * 4)); // 16 MB
 	AddHandler(Default_UseHleGfx, new CSettingTypeApplication("Defaults", "HLE GFX Default", true));
 	AddHandler(Default_ViRefreshRate, new CSettingTypeApplication("Defaults", "ViRefresh", 1500u));
 	AddHandler(Default_AiCountPerBytes, new CSettingTypeApplication("Defaults", "AiCountPerBytes", 0u));
@@ -244,8 +244,8 @@ void CSettings::AddHowToHandleSetting(const char * BaseDirectory)
     AddHandler(Game_DiskSeekTiming, new CSettingTypeGame("DiskSeekTiming", Rdb_DiskSeekTiming));
 
     // User interface
-    AddHandler(UserInterface_ShowCPUPer, new CSettingTypeApplication("Settings", "Display CPU Usage", (uint32_t)false));
-    AddHandler(UserInterface_DisplayFrameRate, new CSettingTypeApplication("Settings", "Display Frame Rate", (uint32_t)false));
+    AddHandler(UserInterface_ShowCPUPer, new CSettingTypeApplication("Settings", "Display CPU Usage", (uint32_t)true));
+    AddHandler(UserInterface_DisplayFrameRate, new CSettingTypeApplication("Settings", "Display Frame Rate", (uint32_t)true));
     AddHandler(UserInterface_FrameDisplayType, new CSettingTypeApplication("Settings", "Frame Rate Display Type", (uint32_t)FR_VIs));
     AddHandler(Directory_Plugin, new CSettingTypeSelectedDirectory("Dir:Plugin", Directory_PluginInitial, Directory_PluginSelected, Directory_PluginUseSelected, Directory_Plugin));
 #ifndef _M_X64
@@ -315,12 +315,12 @@ void CSettings::AddHowToHandleSetting(const char * BaseDirectory)
     AddHandler(GameRunning_ScreenHertz, new CSettingTypeTempNumber(60));
     AddHandler(GameRunning_InReset, new CSettingTypeTempBool(false));
 
-    AddHandler(UserInterface_BasicMode, new CSettingTypeApplication("Settings", "Basic Mode", (uint32_t)true));
+    AddHandler(UserInterface_BasicMode, new CSettingTypeApplication("Settings", "Basic Mode", (uint32_t)false));
     AddHandler(File_DiskIPLPath, new CSettingTypeApplicationPath("Settings", "Disk IPL ROM Path", Default_None));
     AddHandler(File_DiskIPLUSAPath, new CSettingTypeApplicationPath("Settings", "Disk IPL USA ROM Path", Default_None));
     AddHandler(File_DiskIPLTOOLPath, new CSettingTypeApplicationPath("Settings", "Disk IPL TOOL ROM Path", Default_None));
 
-    AddHandler(Debugger_Enabled, new CSettingTypeApplication("Debugger", "Debugger", false));
+    AddHandler(Debugger_Enabled, new CSettingTypeApplication("Debugger", "Debugger", true));
     AddHandler(Debugger_ShowTLBMisses, new CSettingTypeApplication("Debugger", "Show TLB Misses", false));
     AddHandler(Debugger_ShowUnhandledMemory, new CSettingTypeApplication("Debugger", "Show Unhandled Memory", false));
     AddHandler(Debugger_ShowPifErrors, new CSettingTypeApplication("Debugger", "Show Pif Errors", false));
