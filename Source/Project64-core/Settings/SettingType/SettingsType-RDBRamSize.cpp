@@ -32,10 +32,16 @@ bool CSettingTypeRDBRDRamSize::Load (uint32_t Index, uint32_t & Value ) const
     {
         LoadDefault(Index,ulValue);
     }
+    /*
     Value = 0x400000;
     if (ulValue == 8 || ulValue == 0x800000)
     {
         Value = 0x800000;
+    }
+    */
+    Value = ulValue;
+    if (Value < 0x400000) {
+        Value *= 0x100000;
     }
     return bRes;
 }
@@ -70,7 +76,8 @@ void CSettingTypeRDBRDRamSize::Save (uint32_t /*Index*/, bool /*Value*/ )
 
 void CSettingTypeRDBRDRamSize::Save (uint32_t /*Index*/, uint32_t Value )
 {
-    m_SettingsIniFile->SaveNumber(m_SectionIdent->c_str(),m_KeyName.c_str(),Value == 0x800000 ? 8 : 4);
+    // m_SettingsIniFile->SaveNumber(m_SectionIdent->c_str(),m_KeyName.c_str(),Value == 0x800000 ? 8 : 4);
+    m_SettingsIniFile->SaveNumber(m_SectionIdent->c_str(),m_KeyName.c_str(), Value / 0x100000);
 }
 
 void CSettingTypeRDBRDRamSize::Save (uint32_t /*Index*/, const std::string & /*Value*/ )
