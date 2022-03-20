@@ -8,7 +8,7 @@ This patched version changes the following:
 - Disables the nag screen.
 - Changes the following default settings:
   - General settings:
-    - "Pause emulation when window is not active": Changed to False
+    - "Enable Discord Rich Presence": Changed to False
     - "Hide advanced settings": Changed to False
   - Advanced:
     - "Enable debugger": Changed to True
