@@ -1,5 +1,29 @@
 # Project64 - Nintendo 64 Emulator
 
+# Patched version README:
+
+This patched version changes the following:
+
+- Adds 12 MB and 16 MB options for the RAM size.
+- Disables the nag screen.
+- Changes the following default settings:
+  - General settings:
+    - "Pause emulation when window is not active": Changed to False
+    - "Hide advanced settings": Changed to False
+  - Advanced:
+    - "Enable debugger": Changed to True
+    - "Always use interpreter core": Changed to True
+    - "Check if Project64 is already running": Changed to False
+    - "Store game saves in separate folders": Changed to False
+    - "Speed display": Changed to True
+    - "Show status bar": Changed to True
+  - Defaults:
+    - "Memory size": Changed to 16 MB
+- Removes the Video plugin selection from the welcome screen.
+  - The reason for this change is because I don't know where is the GLideN64 plugin.
+
+# Original README:
+
 Project64 is a free and open-source emulator for the Nintendo 64 and Nintendo 64 Disk Drive written in C++ currently for Windows (planned support for other platforms in the future)
 
 ## System Requirements
