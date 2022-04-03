@@ -71,6 +71,8 @@ private:
     static void ZeroRegisterEdit64(CEditReg64& edit);
     static void ZeroRegisterEdits64(CEditReg64* edits, uint32_t ctrlIdsCount);
 
+    void ToggleFprO32();
+
     typedef union
     {
         uint32_t intval;

@@ -99,6 +99,8 @@ HWND CRegisterTabs::Detach(void)
 
 void CRegisterTabs::RefreshEdits()
 {
+    ToggleFprO32();
+
     if (g_Reg == nullptr)
     {
         ZeroRegisterEdits64(m_GPREdits, TabData::GPR.FieldCount);
@@ -751,6 +753,8 @@ CWindow CRegisterTabs::AddTab(char* caption, int dialogId, DLGPROC dlgProc)
 
 void CRegisterTabs::ShowTab(int nPage)
 {
+    ToggleFprO32();
+
     for (size_t i = 0; i < m_TabWindows.size(); i++)
     {
         ::ShowWindow(m_TabWindows[i], SW_HIDE);
@@ -765,6 +769,8 @@ void CRegisterTabs::RedrawCurrentTab()
 {
     int nPage = GetCurSel();
     CRect pageRect = GetPageRect();
+
+    ToggleFprO32();
 
     ::SetWindowPos(m_TabWindows[nPage], HWND_TOP, pageRect.left, pageRect.top, pageRect.Width(), pageRect.Height(), SWP_SHOWWINDOW);
 }
@@ -1034,4 +1040,20 @@ void CEditReg64::SetValue(uint64_t value)
     uint32_t h = (value & 0xFFFFFFFF00000000LL) >> 32;
     uint32_t l = (value & 0x00000000FFFFFFFFLL);
     SetValue(h, l);
+}
+
+void CRegisterTabs::ToggleFprO32()
+{
+    CWindow tab = m_TabWindows[1]; // 1 is FPR tab
+    const char ** fprNames = CRegName::FPR;
+
+    if (g_Settings->LoadBool(Debugger_FprO32))
+    {
+        fprNames = CRegName::FPR_O32;
+    }
+
+    for (int i = 0; i < 32; i++)
+    {
+         tab.SetDlgItemTextW(TabData::FPRFields[i].LabelId, stdstr(fprNames[i]).ToUTF16().c_str());
+    }
 }
