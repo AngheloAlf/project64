@@ -385,12 +385,27 @@ static int GPRIndex(const char* regName)
 
 static int FPRIndex(const char* regName)
 {
+    #if 0
     const char* names[32] = {
         "f0", "f1", "f2", "f3", "f4","f5", "f6", "f7", "f8",
         "f9", "f10", "f11", "f12", "f13", "f14", "f15", "f16",
         "f17", "f18", "f19", "f20", "f21", "f22", "f23", "f24",
         "f25", "f26", "f27", "f28", "f29", "f30", "f31"
     };
+    const char* o32Names[32] = {
+        "fv0", "fv0f", "fv1", "fv1f", "ft0", "ft0f", "ft1", "ft1f",
+        "ft2", "ft2f", "ft3", "ft3f", "fa0", "fa0f", "fa1", "fa1f",
+        "ft4", "ft4f", "ft5", "ft5f", "fs0", "fs0f", "fs1", "fs1f",
+        "fs2", "fs2f", "fs3", "fs3f", "fs4", "fs4f", "fs5", "fs5f",
+    };
+    #else
+    const char* names[32] = {
+        "fv0", "fv0f", "fv1", "fv1f", "ft0", "ft0f", "ft1", "ft1f",
+        "ft2", "ft2f", "ft3", "ft3f", "fa0", "fa0f", "fa1", "fa1f",
+        "ft4", "ft4f", "ft5", "ft5f", "fs0", "fs0f", "fs1", "fs1f",
+        "fs2", "fs2f", "fs3", "fs3f", "fs4", "fs4f", "fs5", "fs5f",
+    };
+    #endif
 
     for (int i = 0; i < 32; i++)
     {
@@ -399,6 +414,16 @@ static int FPRIndex(const char* regName)
             return i;
         }
     }
+
+    #if 0
+    for (int i = 0; i < 32; i++)
+    {
+        if (strcmp(o32Names[i], regName) == 0)
+        {
+            return i;
+        }
+    }
+    #endif
 
     return -1;
 }

@@ -28,10 +28,26 @@ const char * CRegName::Cop0[32] = { "Index", "Random", "EntryLo0", "EntryLo1", "
 "Config", "LLAddr", "WatchLo", "WatchHi", "XContext", "", "", "",
 "", "", "ECC", "CacheErr", "TagLo", "TagHi", "ErrEPC", "" };
 
+#if 0
 const char * CRegName::FPR[32] = { "F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7",
 "F8", "F9", "F10", "F11", "F12", "F13", "F14", "F15",
 "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23",
 "F24", "F25", "F26", "F27", "F28", "F29", "F30", "F31" };
+
+const char* CRegName::FPR_O32[32] = {
+    "FV0", "FV0F", "FV1", "FV1F", "FT0", "FT0f", "FT1", "FT1F",
+    "FT2", "FT2F", "FT3", "FT3F", "FA0", "FA0f", "FA1", "FA1F",
+    "FT4", "FT4F", "FT5", "FT5F", "FS0", "FS0f", "FS1", "FS1F",
+    "FS2", "FS2F", "FS3", "FS3F", "FS4", "FS4f", "FS5", "FS5F",
+};
+#else
+const char* CRegName::FPR[32] = {
+    "FV0", "FV0F", "FV1", "FV1F", "FT0", "FT0F", "FT1", "FT1F",
+    "FT2", "FT2F", "FT3", "FT3F", "FA0", "FA0F", "FA1", "FA1F",
+    "FT4", "FT4F", "FT5", "FT5F", "FS0", "FS0F", "FS1", "FS1F",
+    "FS2", "FS2F", "FS3", "FS3F", "FS4", "FS4F", "FS5", "FS5F",
+};
+#endif
 
 const char * CRegName::FPR_Ctrl[32] = { "Revision", "Unknown", "Unknown", "Unknown", "Unknown",
 "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown",

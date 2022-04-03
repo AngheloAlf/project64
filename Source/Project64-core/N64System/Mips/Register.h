@@ -346,6 +346,7 @@ public:
     static const char *GPR_Lo[32];
     static const char *Cop0[32];
     static const char *FPR[32];
+    static const char *FPR_O32[32];
     static const char *FPR_Ctrl[32];
 };
 
