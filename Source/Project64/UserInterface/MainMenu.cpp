@@ -30,6 +30,7 @@ CMainMenu::CMainMenu(CMainGui * hMainWindow) :
     m_ChangeSettingList.push_back(Debugger_ShowDListAListCount);
     m_ChangeSettingList.push_back(Debugger_DebugLanguage);
     m_ChangeSettingList.push_back(Debugger_ShowRecompMemSize);
+    m_ChangeSettingList.push_back(Debugger_FprO32);
     m_ChangeSettingList.push_back(Debugger_ShowDivByZero);
     m_ChangeSettingList.push_back(Debugger_RecordRecompilerAsm);
     m_ChangeSettingList.push_back(Debugger_DisableGameFixes);
@@ -518,6 +519,9 @@ bool CMainMenu::ProcessMessage(HWND hWnd, DWORD /*FromAccelerator*/, DWORD MenuI
     case ID_DEBUG_SHOW_RECOMP_MEM_SIZE:
         g_Settings->SaveBool(Debugger_ShowRecompMemSize, !g_Settings->LoadBool(Debugger_ShowRecompMemSize));
         g_Notify->DisplayMessage(0, EMPTY_STRING);
+        break;
+    case ID_DEBUG_FPR_O32:
+        g_Settings->SaveBool(Debugger_FprO32, !g_Settings->LoadBool(Debugger_FprO32));
         break;
     case ID_DEBUG_SHOW_DIV_BY_ZERO:
         g_Settings->SaveBool(Debugger_ShowDivByZero, !g_Settings->LoadBool(Debugger_ShowDivByZero));
@@ -1270,6 +1274,12 @@ void CMainMenu::FillOutMenu(HMENU hMenu)
         DebugMenu.push_back(Item);
         Item.Reset(ID_DEBUG_SHOW_RECOMP_MEM_SIZE, EMPTY_STRING, EMPTY_STDSTR, nullptr, L"Display recompiler code buffer size");
         if (g_Settings->LoadBool(Debugger_ShowRecompMemSize))
+        {
+            Item.SetItemTicked(true);
+        }
+        DebugMenu.push_back(Item);
+        Item.Reset(ID_DEBUG_FPR_O32, EMPTY_STRING, EMPTY_STDSTR, nullptr, L"Use o32 FPR ABI names");
+        if (g_Settings->LoadBool(Debugger_FprO32))
         {
             Item.SetItemTicked(true);
         }

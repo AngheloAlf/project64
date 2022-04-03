@@ -238,6 +238,7 @@ enum SettingID
 
     // Debugger
     Debugger_Enabled,
+    Debugger_FprO32,
     Debugger_ShowTLBMisses,
     Debugger_ShowUnhandledMemory,
     Debugger_ShowPifErrors,
