@@ -1502,6 +1502,12 @@ void CN64System::SyncSystemPC()
 void CN64System::DumpSyncErrors(CN64System * SecondCPU)
 {
     int count;
+    const char ** fprNames = CRegName::FPR;
+
+    if (g_Settings->LoadBool(Debugger_FprO32))
+    {
+        fprNames = CRegName::FPR_O32;
+    }
 
     {
         CPath ErrorFile(g_Settings->LoadStringVal(Directory_Log).c_str(), "Sync Errors.txt");
@@ -1548,7 +1554,7 @@ void CN64System::DumpSyncErrors(CN64System * SecondCPU)
         {
             if (m_Reg.m_FPR[count].DW != SecondCPU->m_Reg.m_FPR[count].DW)
             {
-                Error.LogF("FPR[%s] 0x%08X%08X, 0x%08X%08X\r\n", CRegName::FPR[count],
+                Error.LogF("FPR[%s] 0x%08X%08X, 0x%08X%08X\r\n", fprNames[count],
                     m_Reg.m_FPR[count].W[1], m_Reg.m_FPR[count].W[0],
                     SecondCPU->m_Reg.m_FPR[count].W[1], SecondCPU->m_Reg.m_FPR[count].W[0]);
             }
@@ -1668,20 +1674,20 @@ void CN64System::DumpSyncErrors(CN64System * SecondCPU)
         Error.Log("\r\n");
         for (count = 0; count < 32; count++)
         {
-            Error.LogF("FPR[%s],%*s0x%08X%08X, 0x%08X%08X\r\n", CRegName::FPR[count],
+            Error.LogF("FPR[%s],%*s0x%08X%08X, 0x%08X%08X\r\n", fprNames[count],
                 count < 10 ? 9 : 8, " ", m_Reg.m_FPR[count].W[1], m_Reg.m_FPR[count].W[0],
                 SecondCPU->m_Reg.m_FPR[count].W[1], SecondCPU->m_Reg.m_FPR[count].W[0]);
         }
         Error.Log("\r\n");
         for (count = 0; count < 32; count++)
         {
-            Error.LogF("FPR_S[%s],%*s%f, %f\r\n", CRegName::FPR[count],
+            Error.LogF("FPR_S[%s],%*s%f, %f\r\n", fprNames[count],
                 count < 10 ? 7 : 6, " ", *(m_Reg.m_FPR_S[count]), *(SecondCPU->m_Reg.m_FPR_S[count]));
         }
         Error.Log("\r\n");
         for (count = 0; count < 32; count++)
         {
-            Error.LogF("FPR_D[%s],%*s%f, %f\r\n", CRegName::FPR[count],
+            Error.LogF("FPR_D[%s],%*s%f, %f\r\n", fprNames[count],
                 count < 10 ? 7 : 6, " ", *(m_Reg.m_FPR_D[count]), *(SecondCPU->m_Reg.m_FPR_D[count]));
         }
         Error.Log("\r\n");

@@ -215,6 +215,12 @@ void CX86RegInfo::Load_FPR_ToTop(int32_t Reg, int32_t RegToLoad, FPU_STATE Forma
     }
     CPU_Message("CurrentRoundingModel: %s  FpuRoundingModel(StackTopPos()): %s", RoundingModelName(GetRoundingModel()), RoundingModelName(FpuRoundingModel(StackTopPos())));
     int32_t i;
+    const char ** fprNames = CRegName::FPR;
+
+    if (g_Settings->LoadBool(Debugger_FprO32))
+    {
+        fprNames = CRegName::FPR_O32;
+    }
 
     if (RegToLoad < 0) { g_Notify->DisplayError("Load_FPR_ToTop\nRegToLoad < 0 ???"); return; }
     if (Reg < 0) { g_Notify->DisplayError("Load_FPR_ToTop\nReg < 0 ???"); return; }
@@ -293,7 +299,7 @@ void CX86RegInfo::Load_FPR_ToTop(int32_t Reg, int32_t RegToLoad, FPU_STATE Forma
             if (m_x86fpu_MappedTo[(StackTopPos() - 1) & 7] != RegToLoad)
             {
                 UnMap_FPR(m_x86fpu_MappedTo[(StackTopPos() - 1) & 7], true);
-                CPU_Message("    regcache: allocate ST(0) to %s", CRegName::FPR[Reg]);
+                CPU_Message("    regcache: allocate ST(0) to %s", fprNames[Reg]);
                 fpuLoadReg(&StackTopPos(), StackPosition(RegToLoad));
                 FpuRoundingModel(StackTopPos()) = RoundDefault;
                 m_x86fpu_MappedTo[StackTopPos()] = Reg;
@@ -328,8 +334,8 @@ void CX86RegInfo::Load_FPR_ToTop(int32_t Reg, int32_t RegToLoad, FPU_STATE Forma
             m_x86fpu_MappedTo[RegPos] = m_x86fpu_MappedTo[StackTopPos()];
             m_x86fpu_State[RegPos] = m_x86fpu_State[StackTopPos()];
             m_x86fpu_StateChanged[RegPos] = m_x86fpu_StateChanged[StackTopPos()];
-            CPU_Message("    regcache: allocate ST(%d) to %s", StackPos, CRegName::FPR[m_x86fpu_MappedTo[RegPos]]);
-            CPU_Message("    regcache: allocate ST(0) to %s", CRegName::FPR[Reg]);
+            CPU_Message("    regcache: allocate ST(%d) to %s", StackPos, fprNames[m_x86fpu_MappedTo[RegPos]]);
+            CPU_Message("    regcache: allocate ST(0) to %s", fprNames[Reg]);
 
             fpuExchange(StackPos);
 
@@ -353,7 +359,7 @@ void CX86RegInfo::Load_FPR_ToTop(int32_t Reg, int32_t RegToLoad, FPU_STATE Forma
                 i = 8;
             }
         }
-        CPU_Message("    regcache: allocate ST(0) to %s", CRegName::FPR[Reg]);
+        CPU_Message("    regcache: allocate ST(0) to %s", fprNames[Reg]);
         TempReg = Map_TempReg(x86_Any, -1, false);
         switch (Format)
         {
@@ -1049,12 +1055,18 @@ void CX86RegInfo::UnMap_FPR(int32_t Reg, bool WriteBackValue)
 {
     char Name[50];
     int32_t i;
+    const char ** fprNames = CRegName::FPR;
+
+    if (g_Settings->LoadBool(Debugger_FprO32))
+    {
+        fprNames = CRegName::FPR_O32;
+    }
 
     if (Reg < 0) { return; }
     for (i = 0; i < 8; i++)
     {
         if (m_x86fpu_MappedTo[i] != Reg) { continue; }
-        CPU_Message("    regcache: unallocate %s from ST(%d)", CRegName::FPR[Reg], (i - StackTopPos() + 8) & 7);
+        CPU_Message("    regcache: unallocate %s from ST(%d)", fprNames[Reg], (i - StackTopPos() + 8) & 7);
         if (WriteBackValue)
         {
             int32_t RegPos;
