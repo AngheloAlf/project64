@@ -327,6 +327,7 @@ void CSettings::AddHowToHandleSetting(const char * BaseDirectory)
     AddHandler(Debugger_DisableGameFixes, new CSettingTypeApplication("Debugger", "Disable Game Fixes", false));
     AddHandler(Debugger_ShowDListAListCount, new CSettingTypeApplication("Debugger", "Show Dlist Alist Count", false));
     AddHandler(Debugger_ShowRecompMemSize, new CSettingTypeApplication("Debugger", "Show Recompiler Memory size", false));
+    AddHandler(Debugger_FprO32, new CSettingTypeApplication("Debugger", "Use o32 FPR ABI names", true));
     AddHandler(Debugger_RecordExecutionTimes, new CSettingTypeApplication("Debugger", "Record Execution Times", false));
     AddHandler(Debugger_SilentBreak, new CSettingTypeTempBool(false));
     AddHandler(Debugger_SteppingOps, new CSettingTypeTempBool(false));
