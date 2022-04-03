@@ -23,8 +23,7 @@ This patched version changes the following:
   - The reason for this change is because I don't know where is the GLideN64 plugin.
 - Reverted [commit 16667ec](https://github.com/project64/project64/commit/16667ec4f9d9e792dc2f12fb73fb05bf6efffba3): `[Core] Proper Dezaemon 3D SRAM 96KB save support`
   - It breaks the save type detection for [gz](https://www.practicerom.com/)
-- Use the o32 fpr abi names for floating point registers.
-  - Currently this change is hardcoded. Hopefully this could be toggleable using a checkbox
+- Allow enabling/disabling the o32 FPR ABI names for floating point registers.
 
 # Original README:
 

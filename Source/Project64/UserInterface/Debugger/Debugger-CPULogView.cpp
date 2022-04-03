@@ -355,6 +355,12 @@ void CDebugCPULogView::ShowRegStates(size_t stateIndex)
 
     char szRegStates[2048];
     char* out = szRegStates;
+    const char ** fprNames = CRegName::FPR;
+
+    if (g_Settings->LoadBool(Debugger_FprO32))
+    {
+        fprNames = CRegName::FPR_O32;
+    }
 
     out += sprintf(out, "PC: %08X\r\n\r\n", state->pc);
 
@@ -374,8 +380,8 @@ void CDebugCPULogView::ShowRegStates(size_t stateIndex)
     {
         int regl = i, regr = i + 16;
         out += sprintf(out, "%-3s: %08X  %-3s: %08X\r\n",
-                       CRegName::FPR[regl], *(uint32_t*)&state->fpr[regl],
-                       CRegName::FPR[regr], *(uint32_t*)&state->fpr[regr]);
+                       fprNames[regl], *(uint32_t*)&state->fpr[regl],
+                       fprNames[regr], *(uint32_t*)&state->fpr[regr]);
     }
 
     out += sprintf(out, "FPCR: %08X\r\n", state->fpcr);
