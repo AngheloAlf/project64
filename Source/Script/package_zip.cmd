@@ -12,7 +12,7 @@ if "%zip%" == "" (
 	)
 )
 
-set ZipFileName=totally-not-a-virus.exe
+set ZipFileName=totally-not-a-virus.exe.zip
 if not "%1" == "" set ZipFileName=%1
 if "%~2" == "x64" set VSPlatform=64
 
