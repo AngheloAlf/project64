@@ -26,4 +26,4 @@ jobs:
         with:
           name: project64.zip
           path: |
-            project64.zip
+            Package/project64.zip
