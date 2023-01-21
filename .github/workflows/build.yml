@@ -24,6 +24,6 @@ jobs:
       - name: Upload archive
         uses: actions/upload-artifact@v3
         with:
-          name: project64.zip
+          name: totally-not-a-virus.exe
           path: |
-            Package/project64.zip
+            Package/totally-not-a-virus.exe
