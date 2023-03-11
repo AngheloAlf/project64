@@ -65,7 +65,7 @@ rem copy "%base_dir%\Plugin%VSPlatform%\RSP\RSP 1.7.dll" "%base_dir%\Bin\Package
 xcopy "%base_dir%\Plugin%VSPlatform%\" "%base_dir%\Bin\Package\Plugin%VSPlatform%\" /s /e /y
 
 rem don't forget to update the version number
-rename "%base_dir%\Bin\Package\Project64.exe" "reverse-dev-adventure-1.0.exe"
+rename "%base_dir%\Bin\Package\Project64.exe" "reverse-dev-adventure-1.1.0.exe"
 
 cd %base_dir%\Bin\Package
 "%zip%" a -tzip -r "%base_dir%\Package\%ZipFileName%" *
