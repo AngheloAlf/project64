@@ -39,13 +39,13 @@ md "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX"
 md "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
 md "%base_dir%\Bin\Package\Plugin%VSPlatform%\RSP"
 
-IF EXIST "%base_dir%\Plugin%VSPlatform%\GFX\GLideN64" (
-md "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64"
-copy "%base_dir%\Plugin%VSPlatform%\GFX\GLideN64\GLideN64.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64\GLideN64.dll"
-copy "%base_dir%\Plugin%VSPlatform%\GFX\GLideN64\*.ini" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64"
-md "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64\translations"
-copy "%base_dir%\Plugin%VSPlatform%\GFX\GLideN64\translations\*.Lang" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64\translations"
-)
+rem IF EXIST "%base_dir%\Plugin%VSPlatform%\GFX\GLideN64" (
+rem md "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64"
+rem copy "%base_dir%\Plugin%VSPlatform%\GFX\GLideN64\GLideN64.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64\GLideN64.dll"
+rem copy "%base_dir%\Plugin%VSPlatform%\GFX\GLideN64\*.ini" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64"
+rem md "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64\translations"
+rem copy "%base_dir%\Plugin%VSPlatform%\GFX\GLideN64\translations\*.Lang" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX\GLideN64\translations"
+rem )
 
 copy "%base_dir%\Bin\Release%VSPlatform%\Project64.exe" "%base_dir%\Bin\Package"
 copy "%base_dir%\Config\Video.rdb" "%base_dir%\Bin\Package\Config"
@@ -55,13 +55,14 @@ copy "%base_dir%\Config\Enhancements\*.enh" "%base_dir%\Bin\Package\Config\Enhan
 copy "%base_dir%\Config\Project64.rdb" "%base_dir%\Bin\Package\Config"
 copy "%base_dir%\Config\Project64.rdx" "%base_dir%\Bin\Package\Config"
 copy "%base_dir%\Lang\*.pj.Lang" "%base_dir%\Bin\Package\Lang"
-copy "%base_dir%\Plugin%VSPlatform%\Audio\Jabo_Dsound.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Audio"
-copy "%base_dir%\Plugin%VSPlatform%\Audio\Project64-Audio.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Audio"
-copy "%base_dir%\Plugin%VSPlatform%\GFX\Jabo_Direct3D8.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX"
-copy "%base_dir%\Plugin%VSPlatform%\GFX\Project64-Video.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX"
-copy "%base_dir%\Plugin%VSPlatform%\Input\PJ64_NRage.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
-copy "%base_dir%\Plugin%VSPlatform%\Input\Project64-Input.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
-copy "%base_dir%\Plugin%VSPlatform%\RSP\RSP 1.7.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\RSP"
+rem copy "%base_dir%\Plugin%VSPlatform%\Audio\Jabo_Dsound.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Audio"
+rem copy "%base_dir%\Plugin%VSPlatform%\Audio\Project64-Audio.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Audio"
+rem copy "%base_dir%\Plugin%VSPlatform%\GFX\Jabo_Direct3D8.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX"
+rem copy "%base_dir%\Plugin%VSPlatform%\GFX\Project64-Video.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\GFX"
+rem copy "%base_dir%\Plugin%VSPlatform%\Input\PJ64_NRage.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
+rem copy "%base_dir%\Plugin%VSPlatform%\Input\Project64-Input.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\Input"
+rem copy "%base_dir%\Plugin%VSPlatform%\RSP\RSP 1.7.dll" "%base_dir%\Bin\Package\Plugin%VSPlatform%\RSP"
+xcopy "%base_dir%\Plugin%VSPlatform%\" "%base_dir%\Bin\Package\Plugin%VSPlatform%\" /s /e /y
 
 rem don't forget to update the version number
 rename "%base_dir%\Bin\Package\Project64.exe" "reverse-dev-adventure-1.0.exe"
